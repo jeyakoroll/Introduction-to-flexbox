@@ -1,0 +1,29 @@
+	@font-face {
+			font-family: "circejenya";
+			src: url("../fonts/Circe-ExtraBold.eot");
+			src: url("../fonts/Circe-ExtraBold.eot?#iefix") format("embedded-opentype"),
+			url("../fonts/Circe-ExtraBold.woff") format("woff"),
+			url("../fonts/Circe-ExtraBold.ttf") format("truetype");
+			font-style: normal;
+			font-weight: normal;
+	}
+
+	@font-face {
+			font-family: "circemedium";
+			src: url("../fonts/Circe-Bold.eot");
+			src: url("../fonts/Circe-Bold.eot?#iefix") format("embedded-opentype"),
+			url("../fonts/Circe-Bold.woff") format("woff"),
+			url("../fonts/Circe-Bold.ttf") format("truetype");
+			font-style: normal;
+			font-weight: normal;
+	}
+
+	@font-face {
+			font-family: "circelight";
+			src: url("../fonts/Circe-Regular.eot");
+			src: url("../fonts/Circe-Regular.eot?#iefix") format("embedded-opentype"),
+			url("../fonts/Circe-Regular.woff") format("woff"),
+			url("../fonts/Circe-Regular.ttf") format("truetype");
+			font-style: normal;
+			font-weight: normal;
+	}

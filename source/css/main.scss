@@ -1,11 +1,528 @@
-@import "_base/normalize";
-
 /* --------- mixins --------- */
-// @import "../_base/mixins";
-// @import "../_base/fonts";
+@mixin circe($style : jenya) {
+	@if $style == jenya {
+		font-family: 'circejenya';
+	}
 
-/* --------- adjustment --------- */
+	@if $style == medium {
+		font-family: 'circemedium';
+	}
 
-// @import "_base/adjustment";
+	@if $style == light {
+		font-family: 'circelight';
+	}
+}
 
-@import "style/styles";
+@mixin inlineblock ($valine: top) {
+	display: inline-block;
+	vertical-align: $valine;
+}
+
+@mixin clearfix {
+	&:before,
+	&:after {
+		content: "";
+		display: table;
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+
+@mixin border-radius($radius: 5px) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	border-radius: $radius;
+
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+}
+
+@mixin box-shadow($string...) {
+	-webkit-box-shadow: $string;
+	-moz-box-shadow: $string;
+	box-shadow: $string;
+}
+
+@mixin transition($transition...) {
+	-webkit-transition: $transition;
+	-moz-transition: $transition;
+	-ms-transition: $transition;
+	-o-transition: $transition;
+	transition: $transition;
+}
+
+@mixin placecolor($color: #000000) {
+	&::-webkit-input-placeholder {
+		color: $color;
+	}
+	&:-moz-placeholder {
+		color: $color;
+	}
+	&::-moz-placeholder {
+		color: $color;
+	}
+	&:-ms-input-placeholder {
+		color: $color;
+	}
+}
+
+@mixin vertical-gradient($top-color: #ffffff, $bottom-color: #000000) {
+	background-color: $top-color;
+	background-image: -webkit-gradient(linear, left top, left bottom, from($top-color), to($bottom-color)); /* Chrome, Safari 4+ */
+	background-image: -webkit-linear-gradient(top, $top-color, $bottom-color); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+	background-image: -moz-linear-gradient(top, $top-color, $bottom-color); /* Firefox 3.6-15 */
+	background-image: -o-linear-gradient(top, $top-color, $bottom-color); /* Opera 11.10-12.00 */
+	background-image: linear-gradient(to bottom, $top-color, $bottom-color); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=$top-color, EndColorStr=$bottom-color);
+}
+
+@mixin transform($transforms...) {
+	-moz-transform: $transforms;
+	-o-transform: $transforms;
+	-ms-transform: $transforms;
+	-webkit-transform: $transforms;
+	transform: $transforms;
+}
+
+/* --------- centered --------- */
+
+@mixin absolute-center {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	position: absolute;
+}
+
+/* --------- compass sprites --------- */
+
+@mixin get-sprite($map, $sprite, $repeat: no-repeat, $height: true, $width: true) {
+	$sprite-image: sprite-file($map, $sprite);
+	$sprite-map: sprite-url($map);
+	$sprite-position: sprite-position($map, $sprite);
+	$sprite-layout: smart;
+
+	background: $sprite-map $sprite-position $repeat;
+
+	@if ($height == true) {
+		$sprite-height: image-height($sprite-image);
+		height: $sprite-height;
+	}
+
+	@if ($width == true) {
+		$sprite-width: image-width($sprite-image);
+		width: $sprite-width;
+	}
+}
+
+/* --------- responsive mixins --------- */
+
+@mixin desktop {
+	@media screen and (max-width: 1200px) {
+		@content;
+	}
+}
+
+@mixin laptop {
+	@media screen and (max-width: 992px) {
+		@content;
+	}
+}
+
+@mixin tablets {
+	@media screen and (max-width: 768px) {
+		@content;
+	}
+}
+
+@mixin phones {
+	@media screen and (max-width: 480px) {
+		@content;
+	}
+}
+
+$break-small: 320px;
+$break-large: 1024px;
+$from_base: 1900px;
+$large: 1660px;
+$desctop: 1200px;
+$leptop: 992px;
+$tablets: 768px;
+$phones: 480px;
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+  @else if $media == from_base {
+    @media only screen and (max-width: $large) { @content; }
+  }
+  @else if $media == large {
+    @media only screen and (max-width: $large) { @content; }
+  }
+  @else if $media == desctop {
+    @media only screen and (max-width: $desctop) { @content; }
+  }
+  @else if $media == leptop {
+    @media only screen and (max-width: $leptop) { @content; }
+  }
+  @else if $media == tablets {
+    @media only screen and (max-width: $tablets) { @content; }
+  }
+  @else if $media == phones {
+    @media only screen and (max-width: $phones) { @content; }
+  }
+}
+
+// variable
+$outline: 1px solid red;
+
+// adjustment
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	font-size: 62.5%;
+}
+
+body {
+	@include circe(light);
+	line-height: 1.6;
+}
+
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+ul {
+	padding: 0;
+	margin: 0;
+
+	li {
+		padding: 0;
+		margin: 0;
+		list-style: none outside none;
+	}
+}
+
+p {
+	padding: 0;
+	margin: 0;
+}
+
+.wrapper {
+	width: 100%;
+	height: 108rem;
+	display: flex;
+	overflow: hidden;
+  	flex-direction: column;
+	background-image: url('../img/fon.jpg');
+	background-size: cover;
+	position: relative;
+}
+
+.main {
+	min-height: 100%;
+	height: auto !important;
+ 	height: 100%;
+	position: relative;
+	// overflow: hidden;
+	width: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+	flex: 1 0 auto;
+		&:after {
+			content: "";
+			display: block;
+			position: relative;
+			height: 130px;
+	}
+	// flex: 1 0 auto;
+}
+// header
+.header {
+	width: 100%;
+	height: 9rem;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: flex-end;
+	justify-content: flex-start;
+	padding-left: 72px;
+}
+
+// logo
+.header__logo {
+	width: 15%;
+	flex: 2 0 auto;
+}
+
+.logo__pic {
+	display: block;
+	min-width: 262px;
+	min-height: 37px;
+}
+
+// menu
+.nav {
+	width: 15%;
+	flex: 4 0 auto;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.nav__link {
+	padding: 0 1.8rem 0 1rem;
+}
+
+.hyphen {
+	height: 1.5px;
+	width: 10px;
+	background-color: rgba(0, 0, 0, .3);
+	margin-right: 1.1rem;
+}
+
+.nav__text {
+	font-size: 1.5rem;
+	@include circe(light);
+}
+// contact
+.contact {
+	height: 34px;
+	@include circe(light);
+	width: 218px;
+	// flex: 1 0 auto;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-end;
+	align-items: center;
+	margin-right: 119px;
+	padding-right: 14px;
+	background-color: #fff;
+}
+
+.contact__text {
+	align-self: flex-end;
+	padding-bottom: 3px;
+	margin-right: 1.4rem;
+	font-size: 1.1rem;
+	@include circe(light);
+}
+
+p.contact__phone {
+	height: 2.3rem;
+	align-self: flex-start;
+	padding-top: 2px;
+	font-size: 2.3rem;
+	@include circe(jenya);
+}
+
+// main title
+.title {
+	margin-top: 26rem;
+	margin-left: 214px;
+	height: 30%;
+	width: 778px;
+	align-self: center;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: flex-end;
+	align-content: center;
+	@include respond-to(from_base) { align-self: center; margin-left: 0; }
+	@include respond-to(large) { }
+	@include respond-to(desctop) {  }
+	@include respond-to(tablets) { width: 40.5%; }
+}
+
+.title__text {
+	margin: 11px;
+	font-size: 9.7rem;
+	// height: 100%;
+	flex: 1 0 auto;
+	align-self: flex-end;
+	width: 76.8rem;
+	height: 10rem;
+	border-bottom: 1.6px solid black;
+	line-height: 1.2;
+	@include circe(light);
+	@include respond-to(tablets) { width: 40.5%; }
+}
+
+.title__text .title__without-line {
+	font-size: 9.7rem;
+	height: inherit;
+	line-height: 1.2;
+	// border-bottom: 5px solid black;
+}
+// title link
+
+.title__link {
+	margin-top: 5rem;
+	align-self: flex-start;
+	display: flex;
+	text-decoration: none;
+	color: #000;
+	font-size: 24px;
+	flex-flow: row nowrap;
+	@include circe(light);
+}
+
+.title__hyphen {
+	width: 2rem;
+	flex: 0 0 auto;
+	align-self: center;
+	margin-bottom: 6px;
+	margin-right: 22px;
+	height: 2px;
+	background-color: #000;
+}
+
+.title__link-text {
+	padding-right: 15px;
+}
+
+.title__link-arrow {
+	align-self: center;
+	width: 51px;
+	height: 10px;
+}
+
+// button to the next window
+.button {
+	background-color: #fff;
+	height: 100%;
+	width: 5rem;
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.button_arrow {
+
+}
+
+// footer
+.footer {
+	height: 130px;
+	margin-top: -130px;
+	background-color: transparent;
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	position: relative;
+}
+
+// social icons
+.social {
+	padding-left: 72px;
+	width: 17%;
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: flex-start;
+}
+
+.facebook, .twitter {
+	width: 30px;
+	height: 30px;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	background-color: #fff;
+	border-radius: 100%;
+}
+
+.facebook {
+	margin-bottom: 16px;
+}
+
+.social__facebook, .social__twitter {
+	align-self: center;
+}
+
+// page navigation
+.navigation {
+	height: 100%;
+	flex: 1 0 auto;
+	// background-color: lightskyblue;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.navigation__start {
+	
+}
+
+.navigation__scrol-2 {
+	width: 14.5rem;
+	height: 3px;
+	background-color: rgba(0, 0, 0, .1);
+	@include respond-to(large) {
+	 width: 12%;
+	}
+}
+
+.navigation__scrol-3 {
+	width: 41.4rem;
+	height: 3px;
+	background-color: rgba(0, 0, 0, .1);
+	@include respond-to(large) {
+	 width: 25%;
+	}
+}
+
+.navigation__scrol-4 {
+	width: 59.8rem;
+	height: 3px;
+	background-color: rgba(0, 0, 0, .1);
+	@include respond-to(large) {
+	 width: 35%;
+	}
+}
+
+.navigation__item-2 {
+	width: 20px;
+	height: 20px;
+	background-image: url('../img/square_small.png');
+	&:hover {
+		background-image: url('../img/circle.png');
+	}
+}
+
+.navigation__item-3 {
+	width: 20px;
+	height: 20px;
+	background-image: url('../img/square_small.png');
+	&:hover {
+		background-image: url('../img/circle.png');
+	}
+}
+
+.navigation__item-4 {
+	width: 20px;
+	height: 20px;
+	background-image: url('../img/square_small.png');
+	&:hover {
+		background-image: url('../img/circle.png');
+	}
+}

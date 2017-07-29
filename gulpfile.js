@@ -16,8 +16,6 @@ const path_js_files = [
 ];
 
 const path_css_files = [
-    './source/css/_base/**',
-    './source/css/style/styles.scss',
     './source/css/main.scss'
 ]
 
