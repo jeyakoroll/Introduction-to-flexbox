@@ -1,19 +1,23 @@
-const gulp = require('gulp');
-const uglify = require('gulp-uglify');
-const concat = require('gulp-concat');
-const pump = require('pump');
-const browserSync = require('browser-sync').create();
-const sourcemaps = require('gulp-sourcemaps');
-const concatCss = require('gulp-concat-css');
-const cssmin = require('gulp-cssmin');
-const rename = require('gulp-rename');
-const sass = require('gulp-sass');
+const gulp = require('gulp'),
+      uglify = require('gulp-uglify'),
+      concat = require('gulp-concat'),
+      pump = require('pump'),
+      browserSync = require('browser-sync').create(),
+      sourcemaps = require('gulp-sourcemaps'),
+      concatCss = require('gulp-concat-css'),
+      autoprefixer = require('gulp-autoprefixer'),
+      cssmin = require('gulp-cssmin'),
+      rename = require('gulp-rename'),
+      sass = require('gulp-sass');
+
 
 const path_js_files = [
     './source/js/main.js'
 ];
 
 const path_css_files = [
+    './source/css/_base/**',
+    './source/css/style/styles.scss',
     './source/css/main.scss'
 ]
 
@@ -46,6 +50,10 @@ gulp.task('dev_concat_css', function () {
     .pipe(sass().on('error', sass.logError))
     .pipe(sourcemaps.init())
     .pipe(concatCss("all.min.css"))
+    .pipe(autoprefixer({ 
+        browsers: ['last 2 version'],
+        cascade: false
+     }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./public/css/'));
 });

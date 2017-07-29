@@ -4,42 +4,87 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>BIZUP</title>
+	<title>NextPage</title>
 	<!-- CEO -->
-	<meta name="description" content="BIZUP test task">
-	<meta name="keywords" content="template for BIZUP">
-	<meta name="name" content="Короленко Евгений">
+	<meta name="description" content="test task for NextPage">
+	<meta name="keywords" content="create template">
+	<meta name="name" content="Korolenko Evgeny">
 	<!-- CSS -->
-	<link rel="stylesheet" href="public/css/normalize.css">
-	<link rel="stylesheet" href="public/css/bootstrap.min.css">
-	<link rel="stylesheet" href="public/css/fonts.css">
+	<!-- <link rel="stylesheet" href="public/css/bootstrap.min.css"> -->
 	<link rel="stylesheet" href="public/css/all.min.css">
 </head>
 <body class="body">
 	<div class="wrapper">
+		<main class="main">
 		<!-- Site header -->
-	
-	<header class="site-header">
-		<a href="#" class="site-title">Веб-разработка</a>
-        <ul class="site-nav">
-            <li><a href="#">HTML</a></li>
-            <li><a href="#">CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
-        </ul>
-	</header>
-    
-    <div class="banner">
-		<img class="banner-logo" src="img/web.svg" alt="Web Development">
-		<h1 class="banner-title">Веб-разработка</h1>
-		<span class="banner-text">Создание интерактивных сайтов и приложений</span>
-	</div>
-	
+			<header class="header">
+				<div class="header__logo">
+					<a href="#" class="logo">
+						<img src="./public/img/logo.png" alt="" class="logo__pic">
+					</a>
+				</div>
+				<!-- menu -->
+				<div class="nav">
+					<a href="" class="nav__link">
+						<img src="/public/img/nav_top.png" alt="" class="nav__link-img">
+					</a>
+					<div class="hyphen"></div>
+					<p class="nav__text">Navigation</p>
+				</div>
+				<!-- contact -->
+				<div class="contact">
+					<span class="contact__text">Our phone</span>
+					<p class="contact__phone">255-322-445</p>
+				</div>
+			</header>
 
+			<!-- title in the center -->
+			<section class="title">
+				<h1 class="title__text">
+					We have extended
+				</h1>
+				<h1 class="title__text">
+					drivin<span class="title__without-line">g</span> 
+					ex<span class="title__without-line">p</span>erience
+				</h1>
+				<a href="#" class="title__link">
+					<div class="title__hyphen"></div>
+					<p class="title__link-text">
+						Driving Digital Evolution
+					</p>
+					<img src="public/img/arrow_black.png" alt="" class="title__link-arrow">
+				</a>
+			</section>
 
+		</main>
+		<!-- button to the next window -->
+		<a href="#" class="button">
+			<img src="public/img/arrows.png" alt="" class="button__arrow">
+		</a>
+	
+		<!-- Site footer -->
+		<footer class="footer">
+			<!-- social icons -->
+			<div class="social">
+				<a href="#" class="facebook"><img class="social__facebook" src="public/img/facebook.png" alt=""></a>
+				<a href="#" class="twitter"><img class="social__twitter" src="public/img/twitter.png" alt=""></a>
+			</div>
+			<!-- page navigation -->
+			<div class="navigation">
+				<img src="/public/img/first_square_footer.png" alt="" class="navigation__start">
+				<div class="navigation__scrol-2"></div>
+				<a class="navigation__item-2"></a>
+				<div class="navigation__scrol-3"></div>
+				<a class="navigation__item-3"></a>
+				<div class="navigation__scrol-4"></div>
+				<a class="navigation__item-4"></a>
+			</div>
+		</footer>
 	</div>
+
 	<!-- JS -->
 	<script src="public/js/jquery.min.js"></script>
-	<script src="public/js/bootstrap.min.js"></script>
+	<!-- <script src="public/js/bootstrap.min.js"></script> -->
 	<script src="public/js/main.min.js"></script>
 </body>
 </html>
