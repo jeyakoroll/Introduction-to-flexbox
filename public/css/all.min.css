@@ -257,6 +257,7 @@ p.contact__phone {
 
 .title__link {
   margin-top: 5rem;
+  outline: none;
   -ms-flex-item-align: start;
   align-self: flex-start;
   display: -webkit-box;
@@ -456,4 +457,11 @@ p.contact__phone {
 
 .navigation__item-4:hover {
   background-image: url("../img/circle.png");
+}
+
+.wrapper__second {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/fon-2.jpg");
 }
